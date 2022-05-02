@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Database</title>
+    <link rel="stylesheet" href="commonStyles.css" />
+  </head>
+
+  <body>
+    <div id="links">
+      <div><a href="index.html">Home</a></div>
+      <div><a href="contact.html">Contact List</a></div>
+      <div><a href="favourites.html">Favourites</a></div>
+    </div>
+    <main>
+      <table>
+        <thead>
+          <tr>
+            <th >Contact Name</th>
+            <th>Mobile Number</th>
+            <th>Type</th>
+            <th>Favourites</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Append your output to tbody -->
+        </tbody>
+      </table>
+    </main>
+  </body>
+  <script>
+    //code your js part here
+    //append your output to tbody
+
+    var formArr =JSON.parse(localStorage.getItem("ScheduleList"));
+    displayData(formArr);
+
+    var favouriteArr=JSON,parse(localStorage.getItem("favourites"))|| [];
+    function displayData(data){
+      data.forEach(function(elem){
+        var tr= document.createElementNS("tr")
+        
+        var td1=document.createElement("td")
+        td1.innerText=elem. personMatchNumber;
+
+        var td2=document.createElement("td")
+        td2.innerText=elem. personTeamA;
+
+        var td3=document.createElement("td")
+        td3.innerText=elem. personTeamB;
+
+        var td4=document.createElement("td")
+        td4.innerText=elem. personDate;
+
+        var td5=document.createElement("td")
+        td5.innerText=elem. personVenue;
+
+        var td6=document.createElement("td")
+        td6.innerText= "Favourite";
+        td6.style.color="blue";
+        td6.style.curser="pointer"
+        td6.addEventListener("click",function(){
+          favouriteFunc(elem);
+        });
+        tr.append(td1,td2,td3,td4,td5,td6);
+        document.querySelector("tbody").append(tr);
+      });
+    }
+    function favouritesFunc(elem){
+      console.log(elem);
+      favouriteArr.push(elem);
+      localStorage.setItem("favourite",JSON.stringify(favouriteArr));
+    }
+
+
+  </script>
+</html>
